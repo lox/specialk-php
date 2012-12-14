@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+  verbose="true"
+  bootstrap="tests/bootstrap.php"
+  colors="false"
+  processIsolation="false"
+  backupGlobals="false"
+  backupStaticAttributes="false"
+>
+
+  <!-- Test suites to be run -->
+  <testsuites>
+    <testsuite name="specialk-php">
+      <directory suffix="Test.php">tests</directory>
+    </testsuite>
+  </testsuites>
+
+  <!-- Filters for code coverage reporting -->
+  <filter>
+    <whitelist>
+      <directory>./</directory>
+      <exclude>
+        <directory>./benchmark</directory>
+        <directory>./tests</directory>
+        <directory>./vendor</directory>
+      </exclude>
+    </whitelist>
+  </filter>
+
+</phpunit>
