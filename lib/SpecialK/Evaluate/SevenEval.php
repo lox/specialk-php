@@ -36,19 +36,21 @@ class SevenEval
 	 * Loads a SevenEval object from a lookup table created with {@link save}
 	 * @return FiveEval
 	 */
-	public static function load($dir)
+	public static function load($dir=null)
 	{
-		$five = new self(false);
-		$data = json_decode(file_get_contents("$dir/fiveeval.json"), true);
+		$dir = $dir ?: __DIR__.'/../../../data';
+		$seven = new self(false);
+		$data = json_decode(file_get_contents("$dir/seveneval.json"), true);
 
-		$five->rank = $data[0];
-		$five->flushRank = $data[1];
-		$five->face = $data[2];
-		$five->flush = $data[3];
-		$five->suit = $data[4];
+		$seven->rank = $data[0];
+		$seven->flushRank = $data[1];
+		$seven->face = $data[2];
+		$seven->flush = $data[3];
+		$seven->suit = $data[4];
+		$seven->flushCheck = $data[5];
 
 		unset($data);
-		return $five;
+		return $seven;
 	}
 
 	private function generateDeck()

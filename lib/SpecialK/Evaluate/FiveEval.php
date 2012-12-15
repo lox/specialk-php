@@ -37,8 +37,9 @@ class FiveEval
 	 * Loads a FiveVal object from a lookup table created with {@link save}
 	 * @return FiveEval
 	 */
-	public static function load($dir)
+	public static function load($dir=null)
 	{
+		$dir = $dir ?: __DIR__.'/../../../data';
 		$five = new self(false);
 		$data = json_decode(file_get_contents("$dir/fiveeval.json"), true);
 
