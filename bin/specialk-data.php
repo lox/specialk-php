@@ -20,6 +20,3 @@ $seven = new \SpecialK\Evaluate\SevenEval();
 $seven->save($dir);
 
 printf(" Saved in %.2fs\n", microtime(true)-$timer);
-
-
-
