@@ -54,7 +54,7 @@ class SevenEval
     }
 
     private function generateDeck()
-  {
+{
         $this->face = array();
         $this->flush = array();
         $this->suit = array();
@@ -75,42 +75,42 @@ class SevenEval
 
         $n=0;
         for ($n=0; $n<13; $n++) {
-            $this->face[4*$n]		  = ($face[$n] << Constants::NON_FLUSH_BIT_SHIFT) + Constants::SPADE;
-            $this->face[4*$n+1]		= ($face[$n] << Constants::NON_FLUSH_BIT_SHIFT) + Constants::HEART;
-            $this->face[4*$n+2]		= ($face[$n] << Constants::NON_FLUSH_BIT_SHIFT) + Constants::DIAMOND;
-            $this->face[4*$n+3]		= ($face[$n] << Constants::NON_FLUSH_BIT_SHIFT) + Constants::CLUB;
+            $this->face[4*$n]    = ($face[$n] << Constants::NON_FLUSH_BIT_SHIFT) + Constants::SPADE;
+            $this->face[4*$n+1]  = ($face[$n] << Constants::NON_FLUSH_BIT_SHIFT) + Constants::HEART;
+            $this->face[4*$n+2]  = ($face[$n] << Constants::NON_FLUSH_BIT_SHIFT) + Constants::DIAMOND;
+            $this->face[4*$n+3]  = ($face[$n] << Constants::NON_FLUSH_BIT_SHIFT) + Constants::CLUB;
 
-            $this->flush[4*$n]		= $faceflush[$n];
-            $this->flush[4*$n+1]	= $faceflush[$n];
-            $this->flush[4*$n+2]	= $faceflush[$n];
-            $this->flush[4*$n+3]	= $faceflush[$n];
+            $this->flush[4*$n]   = $faceflush[$n];
+            $this->flush[4*$n+1] = $faceflush[$n];
+            $this->flush[4*$n+2] = $faceflush[$n];
+            $this->flush[4*$n+3] = $faceflush[$n];
 
-            $this->suit[4*$n]		= Constants::SPADE;
-            $this->suit[4*$n+1]	= Constants::HEART;
-            $this->suit[4*$n+2]	= Constants::DIAMOND;
-            $this->suit[4*$n+3]	= Constants::CLUB;
+            $this->suit[4*$n]    = Constants::SPADE;
+            $this->suit[4*$n+1]  = Constants::HEART;
+            $this->suit[4*$n+2]  = Constants::DIAMOND;
+            $this->suit[4*$n+3]  = Constants::CLUB;
         }
     }
 
     public function generateRankings()
-  {
+    {
         $fiveEval = new FiveEval();
 
         $this->rank = array();
         $this->flushRank = array();
 
-    $face = array(
-        Constants::ACE, Constants::KING, Constants::QUEEN, Constants::JACK,
-        Constants::TEN, Constants::NINE, Constants::EIGHT, Constants::SEVEN,
-        Constants::SIX, Constants::FIVE, Constants::FOUR, Constants::THREE,
-        Constants::TWO
+        $face = array(
+            Constants::ACE, Constants::KING, Constants::QUEEN, Constants::JACK,
+            Constants::TEN, Constants::NINE, Constants::EIGHT, Constants::SEVEN,
+            Constants::SIX, Constants::FIVE, Constants::FOUR, Constants::THREE,
+            Constants::TWO
         );
 
-    $faceFlush = array(
-        Constants::ACE_FLUSH, Constants::KING_FLUSH, Constants::QUEEN_FLUSH, Constants::JACK_FLUSH,
-        Constants::TEN_FLUSH, Constants::NINE_FLUSH, Constants::EIGHT_FLUSH, Constants::SEVEN_FLUSH,
-        Constants::SIX_FLUSH, Constants::FIVE_FLUSH, Constants::FOUR_FLUSH, Constants::THREE_FLUSH,
-        Constants::TWO_FLUSH
+        $faceFlush = array(
+            Constants::ACE_FLUSH, Constants::KING_FLUSH, Constants::QUEEN_FLUSH, Constants::JACK_FLUSH,
+            Constants::TEN_FLUSH, Constants::NINE_FLUSH, Constants::EIGHT_FLUSH, Constants::SEVEN_FLUSH,
+            Constants::SIX_FLUSH, Constants::FIVE_FLUSH, Constants::FOUR_FLUSH, Constants::THREE_FLUSH,
+            Constants::TWO_FLUSH
         );
 
         //Non-flush ranks
@@ -156,7 +156,7 @@ class SevenEval
     }
 
     private function generateFlushCheck()
-  {
+    {
         $this->flushCheck = array();
 
         //Begin with spades and run no further than clubs
@@ -214,6 +214,16 @@ class SevenEval
      */
     public function evaluateSeven($card1, $card2, $card3, $card4, $card5, $card6, $card7)
     {
+        if(is_object($card1)) {
+            $card1 = $card1->intVal();
+            $card2 = $card2->intVal();
+            $card3 = $card3->intVal();
+            $card4 = $card4->intVal();
+            $card5 = $card5->intVal();
+            $card6 = $card6->intVal();
+            $card7 = $card7->intVal();
+        }
+
         $faceKey = $this->face[$card1] +
             $this->face[$card2] +
             $this->face[$card3] +

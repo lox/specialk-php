@@ -197,10 +197,16 @@ class FiveEval
     }
 
     /**
-     * Gets the numerical rank of a combination of 5 cards in int form
+     * Gets the numerical rank of a combination of 5 cards in either int or Card form
      */
     public function evaluateFive($card1, $card2, $card3, $card4, $card5)
     {
+        $card1 = is_int($card1) ? $card1 : $card1->intVal();
+        $card2 = is_int($card2) ? $card2 : $card2->intVal();
+        $card3 = is_int($card3) ? $card3 : $card3->intVal();
+        $card4 = is_int($card4) ? $card4 : $card4->intVal();
+        $card5 = is_int($card5) ? $card5 : $card5->intVal();
+
         if( ($this->suit[$card1] == $this->suit[$card2]) &&
             ($this->suit[$card1] == $this->suit[$card3]) &&
             ($this->suit[$card1] == $this->suit[$card4]) &&

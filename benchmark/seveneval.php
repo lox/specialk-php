@@ -21,4 +21,4 @@ for($i=0; $i<ITERATIONS; $i++)
     $evaluator->evaluateSeven($deck[0], $deck[1], $deck[2], $deck[3], $deck[4], $deck[5], $deck[6]);
 
 $seconds = microtime(true)-$timer;
-printf("Evaluated %d 7-card hands in %.2fs (%d/s)\n", ITERATIONS, $seconds, ITERATIONS/$seconds);
+printf("Evaluated %d 7-card hands in %.2fs (%s/s)\n", ITERATIONS, $seconds, number_format(ITERATIONS/$seconds));
